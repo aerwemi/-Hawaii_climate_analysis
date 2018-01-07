@@ -83,6 +83,20 @@ for i in stations:
     station_list[key]=val
 
 
+# 
+prcp=session.query(Measurements.date, Measurements.prcp).filter(Measurements.date > '2016-08-23' ).order_by(Measurements.date).all()
+prcp_date = set([i[0] for i in prcp])
+
+prcp_all={}
+for i in prcp_date:
+    vals=[]
+    for j in range(len(prcp)):
+        if prcp[j][0] == i:
+            temp=prcp[j][1]
+            vals.append(temp)
+    prcp_all[i]=vals
+
+
 ####
 from flask import Flask, jsonify
 
@@ -110,14 +124,17 @@ def welcome():
         "<br/>"
         "Returns jason object (station list)<br/>"
         "/api/v1.0/stations<br/>"
+        "<br/>"
+        "Returns jason object (date:precipitation list)<br/>"
+        "/api/v1.0/precipitation<br/>"
         
         )
 
 
 
 
-@app.route("/api/v1.0/precipitation")
-def precipitation():
+@app.route("/api/v1.0/tobs")
+def tobs():
     """Return the tobs data as json"""
     
      
@@ -130,6 +147,12 @@ def stations():
     """Return the test data as json"""
     
     return jsonify(station_list)
+
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+    """Return the test data as json"""
+    return jsonify(prcp_all)
 
 
 
