@@ -18,7 +18,7 @@ The climate data for Hawaii is provided through two CSV files. Start by using Py
 
 ## Database Engineering
 
-SQLAlchemy to model your table schemas and create a sqlite database for your tables. 
+SQLAlchemy to model table schemas and create a sqlite database for tables. 
 
 * `database_engineering.ipynb` Database Engineering work.
 
@@ -48,4 +48,4 @@ Python and SQLAlchemy for  climate analysis and data exploration
 
 Flask api based on the queries .
 
-* Use FLASK to create your routes.
+* FLASK data routes.
